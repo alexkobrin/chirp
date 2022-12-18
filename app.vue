@@ -1,17 +1,23 @@
 <template>
   <div :class="{ dark: darkMode }">
-    <div class="min-h-full">
-      <div
-        class="grid grid-cols-12 mx-auto sm:px-6 lg:max-w-7xl lg:px-8 lg:gap-5"
-      >
-        <!-- Left side bar -->
-        <div class="hidden bg-green-500 xs:col-span-1 md:block  xl:col-span-2">
-          left
+    <div class="bg-white  dark:bg-dim-900">
+      <div class="min-h-full">
+        <div
+          class="grid grid-cols-12 mx-auto sm:px-6 lg:max-w-7xl lg:px-8 lg:gap-5"
+        >
+          <!-- Left side bar -->
+          <div
+            class="  xs:col-span-1 md:block xl:col-span-2"
+          >
+            <div class="sticky top-0">
+              <SidebarLeft />
+            </div>
+          </div>
+          <!-- Main content -->
+          <div class=""></div>
+          <!-- Right sidebar -->
+          <div class=""></div>
         </div>
-        <!-- Main content -->
-        <div class="bg-red-500"> </div>
-        <!-- Right sidebar -->
-        <div class="bg-yellow-500"> </div>
       </div>
     </div>
   </div>
