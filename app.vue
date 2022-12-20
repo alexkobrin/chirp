@@ -7,7 +7,7 @@
         >
           <!-- Left side bar -->
           <div
-            class="  xs:col-span-1 md:block xl:col-span-2"
+            class="hidden xs:col-span-1 md:block xl:col-span-2"
           >
             <div class="sticky top-0">
               <SidebarLeft />
