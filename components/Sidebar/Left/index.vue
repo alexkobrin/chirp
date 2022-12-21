@@ -33,7 +33,6 @@
         <template v-slot:name> Notifications </template>
       </SidebarLeftTab>
 
-
       <SidebarLeftTab>
         <template v-slot:icon>
           <InboxIcon />
