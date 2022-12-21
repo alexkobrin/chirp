@@ -5,7 +5,8 @@
   >
     <h1
       class="p-3 text-xl font-extrabold text-gray-900 border-b dark:text-white"
-    >
+      :class="twitterBorderColor"
+      >
       {{ title }}
     </h1>
     <slot></slot>  
