@@ -13,6 +13,7 @@
     "prisma": "^4.8.0"
   },
   "dependencies": {
-    "@heroicons/vue": "^2.0.13"
+    "@heroicons/vue": "^2.0.13",
+    "@prisma/client": "^4.8.0"
   }
 }
