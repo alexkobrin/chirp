@@ -2,8 +2,7 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js" 
-    
+  provider = "prisma-client-js"
 }
 
 datasource db {
@@ -12,13 +11,26 @@ datasource db {
 }
 
 model User {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  email String
-  name String?
-  username String @unique
-  password String
+  id           String  @id @default(auto()) @map("_id") @db.ObjectId
+  email        String
+  name         String?
+  username     String  @unique
+  password     String
   profileImage String?
 
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+
+  refreshToken RefreshToken[]
+}
+
+model RefreshToken {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  token     String   @unique
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt 
+
+  updatedAt DateTime @updatedAt
+  userId    String   @db.ObjectId
+  user      User     @relation(fields: [userId], references: [id])
 }
