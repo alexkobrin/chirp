@@ -18,6 +18,14 @@ const generateRefreshToken = (user) => {
     
   }
  }
+ export const decodedAccessToken = (token) => {
+  try {
+      return  jwt.verify(token , jwtAccessSecret)
+  } catch (err) {
+    console.log(err , "Decode Refresh token Error");
+    
+  }
+ }
 
 export const generateToken = (user) => {
 const accessToken = generateAccessToken(user)
