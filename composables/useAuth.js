@@ -1,7 +1,7 @@
  
 
 export default () => {
-  // State
+  // State app
   const useAuthToken = () => useState("auth_token");
   const useAuthUser = () => useState("auth_user");
 
@@ -34,22 +34,22 @@ export default () => {
 
 
 
-  // const refreshToken = async () => {
-  //   try {
-  //   // const {access_token} = await  $fetch('api/auth/refresh')
-  //   // setToken(access_token);
-  // } catch (error) {
+  const refreshToken = async () => {
+    try {
+      const {access_token} = await  $fetch('api/auth/refresh')
+      setToken(access_token);
+  } catch (error) {
       
-  //   }
-  // }
+    }
+  }
 
-  // const initAuth = async () => {
-  //   try {
-  //     //  await sendRefreshToken()
-  //   } catch (error) {
-      
-  //   }
-  // }
+  const initAuth = async () => {
+    try {
+        await sendRefreshToken()
+    } catch (err) {
+      console.log(err , "err Refresh");
+    }
+  }
 
   return {
     login,
