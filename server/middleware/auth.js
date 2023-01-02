@@ -18,11 +18,11 @@ export default defineEventHandler(async(event) => {
   }
 
   const token = event.req.headers['authorization']?.split(' ')[1]
-   
-  if( !token ) {
-     return  handleError(event , 401 , "Unauthorized")
-  }
+  
   const decoded = decodedAccessToken(token)
+  if(!decoded) {
+    return  handleError(event , 401 , "Unauthorized")
+  }
   
   try {
     const  userId = decoded.userId
@@ -33,6 +33,7 @@ export default defineEventHandler(async(event) => {
 
   } catch (err) {
     console.log(err , "err endpoin user.get");
+    return
     
   }
   

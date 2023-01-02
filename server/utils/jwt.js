@@ -14,7 +14,8 @@ const generateRefreshToken = (user) => {
   try {
       return  jwt.verify(token , jwtRefreshSecret)
   } catch (err) {
-    console.log(err , "Decode Refresh token Error");
+    
+    return
     
   }
  }
@@ -22,8 +23,8 @@ const generateRefreshToken = (user) => {
   try {
       return  jwt.verify(token , jwtAccessSecret)
   } catch (err) {
-    console.log(err , "Decode Refresh token Error");
-    
+     
+     return
   }
  }
 
