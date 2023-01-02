@@ -44,8 +44,9 @@ export default () => {
   }
 
   const initAuth = async () => {
+    
     try {
-        await sendRefreshToken()
+        await refreshToken()
     } catch (err) {
       console.log(err , "err Refresh");
     }
@@ -53,6 +54,7 @@ export default () => {
 
   return {
     login,
-    useAuthUser
+    useAuthUser,
+    initAuth
   };
 };
