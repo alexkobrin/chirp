@@ -6,7 +6,8 @@ import {handleError} from "../utils/error"
 
 export default defineEventHandler(async(event) => {
   const endpoint = [
-    '/api/auth/user'
+    '/api/auth/user' ,
+    '/api/user/tweets'
   ]
   const isHandleByThisMiddleware = endpoint.some(endpoint =>{
      const pattern = new UrlPattern(endpoint)
@@ -18,6 +19,7 @@ export default defineEventHandler(async(event) => {
   }
 
   const token = event.req.headers['authorization']?.split(' ')[1]
+   
   
   const decoded = decodedAccessToken(token)
   if(!decoded) {
