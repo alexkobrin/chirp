@@ -1,10 +1,16 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-    modules:['@nuxtjs/tailwindcss'],
+  modules: ["@nuxtjs/tailwindcss"],
 
-    // Access to variable in env
-    runtimeConfig : {
-       jwtAccessSecret : process.env.JWT_ACCESS_TOKEN_SECRET,
-       jwtRefreshSecret :  process.env.JWT_REFRESH_TOKEN_SECRET
-    }
-})
+  // Access to variable in env
+  runtimeConfig: {
+    // JWT
+    jwtAccessSecret: process.env.JWT_ACCESS_TOKEN_SECRET,
+    jwtRefreshSecret: process.env.JWT_REFRESH_TOKEN_SECRET,
+  
+    // Cloudinary
+    cloudinaryCloudName: process.env.CLOUDINARY_CLOUD_NAME,
+    cloudinaryApi: process.env.CLOUDINARY_API,
+    cloudinaryApiSecret: process.env.CLOUDINARY_API_SECRET,
+  },
+});
