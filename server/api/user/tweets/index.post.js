@@ -18,6 +18,8 @@ export default defineEventHandler(async (event) => {
 
   const { fields, files } = response;
 
+   
+
   //  get userId
   const userId = event.context?.auth?.user?.id;
 
