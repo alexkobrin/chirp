@@ -16,6 +16,24 @@
 4</textarea
         >
       </div>
+      <div class="flex p-2 pl-14"></div>
+    </div>
+    <div class="flex p-2 pl-14">
+      <div :class="iconsWrapper">
+        <UIUploadImage />
+      </div>
+      <div :class="iconsWrapper">
+        <UIUploadGif />
+      </div>
+      <div :class="iconsWrapper">
+        <UIChart />
+      </div>
+      <div :class="iconsWrapper">
+        <UIEmoji />
+      </div>
+      <div :class="iconsWrapper">
+        <UICalendar />
+      </div>
     </div>
     <div>
       <button @click="handlefromSubmit">Tweet</button>
@@ -23,6 +41,7 @@
   </div>
 </template>
 <script setup>
+const { iconsWrapper } = useTailwindConfig();
 const props = defineProps({
   user: {
     type: Object,
