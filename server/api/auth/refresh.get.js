@@ -38,7 +38,7 @@ export default defineEventHandler(async (event) => {
       event,
       createError({
         statusCode: 401,
-        statusMessage: "Refresh token is invalid 2",
+        statusMessage: "Refresh token is expired",
       })
     );
   }

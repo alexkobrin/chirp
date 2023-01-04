@@ -1,8 +1,8 @@
 import { v2 as _cloudinary } from "cloudinary";
-
-
-
+ 
 const cloudinary = () => {
+// config cloudianry
+
   const {cloudinaryCloudName,cloudinaryApi , cloudinaryApiSecret } = useRuntimeConfig()
  
   _cloudinary.config({
@@ -17,8 +17,6 @@ const cloudinary = () => {
 
 export const uploadToCloudinary = (image) => {
   return new Promise((resolve, reject) => {
-
-    
 
     cloudinary().uploader.upload(image, (err, data) => {
       if (err) {
