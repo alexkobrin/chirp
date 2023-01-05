@@ -7,7 +7,8 @@ import {handleError} from "../utils/error"
 export default defineEventHandler(async(event) => {
   const endpoint = [
     '/api/auth/user' ,
-    '/api/user/tweets'
+    '/api/user/tweets',
+    '/api/tweets'
   ]
   const isHandleByThisMiddleware = endpoint.some(endpoint =>{
      const pattern = new UrlPattern(endpoint)
