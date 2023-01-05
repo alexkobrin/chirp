@@ -11,7 +11,7 @@
       </nuxt-link>
     </div>
 
-    <div class="mt-2 space-y-8">
+    <div class="mt-2 space-y-6">
       <SidebarLeftTab>
         <template v-slot:icon>
           <HomeIcon />

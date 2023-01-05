@@ -1,15 +1,34 @@
 <template>
   <div>
-   <MainSection  title="Home" :loading="loading">
-    
-      <TweetForm :user="user"/>
-     </MainSection>
+    <MainSection title="Home" :loading="loading">
+      <div class="border-b" :class="twitterBorderColor">
+        <TweetForm :user="user" />
+      </div>
+      <TweetListFeed :tweets="homeTweets" />
+    </MainSection>
   </div>
 </template>
 <script setup>
-const loading = ref(false)
- const {useAuthUser} = useAuth()
-const user = useAuthUser()
+useHead({
+  title: "Home",
+});
+const homeTweets = ref([]);
+const {getHomeTweets} = useTweets()
+
+const { twitterBorderColor } = useTailwindConfig();
+const loading = ref(false);
+const { useAuthUser } = useAuth();
+const user = useAuthUser();
+
+onBeforeMount(async()=>{
+  
+  loading.value = true
+  const {tweets} = await getHomeTweets()
+
+  homeTweets.value = tweets
+
+   loading.value = false
+})
 
 
 </script>

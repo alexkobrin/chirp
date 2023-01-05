@@ -29,6 +29,13 @@ export default defineEventHandler(async (event) => {
     authorId: userId,
   };
 
+  // Check if Reply to is prowided
+   const replyTo  = fields.replyTo
+   if (replyTo && replyTo !== 'null') {
+   
+       tweetData.replyToId = replyTo
+   }
+
   const newTweet = await createTweet(tweetData);
 
   // Create media files
