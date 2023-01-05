@@ -3,13 +3,14 @@
     class="flex justify-center text-white disabled:cursor-not-allowed disabled:bg-blue-300 text-sm hover:bg-blue-500 rounded-full bg-blue-400"
     :disabled="isDisabled"
     :class="dinamicClasses"
+    @click="handleClick"
   >
     <span :class="textFontSize"> <slot /> </span>
   </button>
 </template>
 <script setup>
-import { BoltIcon } from "@heroicons/vue/24/solid";
-
+ 
+const emits = defineEmits(['onClick'])
 const { isDisabled, liquid, size } = defineProps({
   isDisabled: {
     type: Boolean,
@@ -52,4 +53,7 @@ const textFontSize = computed(() => {
 //   }
 // });
 const dinamicClasses = computed(() => `${paddingClasses.value} ${liquid ? 'w-full' : 'w-min' } `);
+function handleClick (event) {
+  emits('onClick' , event)
+}
 </script>

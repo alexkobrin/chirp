@@ -14,8 +14,7 @@
           class="w-full h-12 text-lg text-gray-900 placeholder:text-gray-400 bg-transparent border-0 dark:text-white focus:ring-0"
           placeholder="What's happening ?"
         >
-4</textarea
-        >
+        </textarea>
       </div>
     </div>
     <!-- File Selector -->
@@ -56,8 +55,12 @@
         </div>
       </div>
       <div class="ml-auto">
-        <UIButton size="sm" ><span><strong>Tweet</strong></span>   </UIButton>
-        <!-- <button @click="handlefromSubmit">Tweet</button> -->
+        <UIButton
+          size="sm"
+          :isDisabled="isDisabled"
+          @onClick="handleformSubmit"
+          ><span><strong>Tweet</strong></span>
+        </UIButton>
       </div>
     </div>
   </div>
@@ -77,7 +80,9 @@ const inputImageUrl = ref(null);
 
 const emits = defineEmits(["onSubmit"]);
 
-function handlefromSubmit() {
+const isDisabled = computed(() => text.value === "");
+
+function handleformSubmit() {
   if (text.value === "") return;
   emits("onSubmit", {
     text: text.value,
