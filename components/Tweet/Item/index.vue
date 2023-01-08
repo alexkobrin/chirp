@@ -1,5 +1,9 @@
 <template>
   <div>
+    <!-- Header -->
+     <TweetItemHeader :tweet="tweet" />
+
+    <!-- Main content -->
     <div class="ml-16">
       <p class="flex-shrink font-medium text-gray-800 w-auto dark:text-white">
         {{ tweet.text }}
@@ -12,6 +16,14 @@
       >
         <img class="w-full rounded-2xl" :src="image.url" alt="" />
       </div>
+      <!-- Footer -->
+
+      <div class="mt-2">
+         <TweetItemActions/>
+
+      </div>
+
+
     </div>
   </div>
 </template>
