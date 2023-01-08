@@ -1,9 +1,7 @@
 <template>
   <div>
     <ul>
-      <li v-for="(tweet, idx) in props.tweets" :key="idx">
-        {{ tweet.text }}
-      </li>
+      <TweetItem v-for="(tweet, idx) in props.tweets" :tweet="tweet" :key="idx" />
     </ul>
   </div>
 </template>
@@ -11,11 +9,7 @@
 const props = defineProps({
   tweets: {
     type: Array,
-    required: true
-  }
-})
-
-
-
-
+    required: true,
+  },
+});
 </script>
