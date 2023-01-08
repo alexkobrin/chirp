@@ -39,4 +39,5 @@ const isAuthLoading = useAuthLoading();
 onBeforeMount(() => {
   initAuth();
 });
+ 
 </script>

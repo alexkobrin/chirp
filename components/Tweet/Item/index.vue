@@ -19,7 +19,7 @@
       <!-- Footer -->
 
       <div class="mt-2">
-         <TweetItemActions/>
+         <TweetItemActions :tweet="tweet" />
 
       </div>
 
@@ -35,4 +35,5 @@ const { tweet } = defineProps({
     required: true,
   },
 });
+
 </script>
