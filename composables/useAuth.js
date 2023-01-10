@@ -52,13 +52,13 @@ export default () => {
 
   const refreshToken = async () => {
     try {
-      const { access_token } = await $fetch("api/auth/refresh");
+      const { access_token } = await $fetch("/api/auth/refresh");
       setToken(access_token);
     } catch (error) {}
   };
   const getUser = async () => {
     try {
-      const data = await useFetchApi("api/auth/user");
+      const data = await useFetchApi("/api/auth/user");
       setUser(data.user);
     } catch (err) {
       console.log(err, "User not defined");
