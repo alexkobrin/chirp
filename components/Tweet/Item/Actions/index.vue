@@ -1,8 +1,9 @@
 <template>
   <div class="flex justify-around items-center ">
-    <TweetItemActionsIcon color="blue" :size="size">
+    <TweetItemActionsIcon @on-click="emits('onCommentClick')"  color="blue" :size="size">
       <template v-slot:icon="{ classes }">
-        <ChatBubbleLeftEllipsisIcon :class="classes" />
+        
+        <ChatBubbleLeftEllipsisIcon    :class="classes" />
       </template>
 
       <template v-if="showStats" v-slot:default> {{props.tweet.repliesCount}} </template>
@@ -50,6 +51,7 @@ const props = defineProps({
     default: false
   }
 })
+const emits = defineEmits(['onCommentClick'])
 const showStats = computed(()=> props.compact   )
 const size = computed(()=>props.compact  ? 5 : 8)
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center text-gray-400 cursor-pointer group">
+  <div @click.stop.prevent="emits('onClick')" class="flex items-center text-gray-400 cursor-pointer group">
     <div
       :class="`p-2 group-hover:bg-${props.color}-100 dark:group-hover:bg-opacity-20 group-hover:text-${props.color}-400 rounded-full ${defaultTransition} `"
     >
@@ -11,6 +11,7 @@
 <script setup>
 
 const { defaultTransition } = useTailwindConfig();
+const emits = defineEmits(['onClick'])
 const props = defineProps({
   color: {
     type: String,

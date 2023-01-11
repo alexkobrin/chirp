@@ -4,6 +4,7 @@
       <UISpinner />
     </div>
     <div v-else>
+      <TweetItem v-if="props.replyTo && props.showReply" :tweet="props.replyTo"  hideActions />
       <TweetFormInput :placeholder="props.placeholder" @onSubmit="handleFormSubmit" :user="props.user" />
     </div>
   </div>
@@ -27,6 +28,10 @@ const props = defineProps({
   replyTo : {
     type: Object,
     default: null
+  },
+  showReply : {
+    type: Boolean,
+    default: false
   }
 });
 async function handleFormSubmit(data) {
@@ -39,7 +44,7 @@ async function handleFormSubmit(data) {
     });
     emits('onSuccess' , response.tweet)
   } catch (err) {
-    console.log(err, "err Post twwee");
+    console.log(err, "err Post tweet");
   } finally{
     loading.value = false
   }

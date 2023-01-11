@@ -18,8 +18,8 @@
       </div>
       <!-- Footer -->
 
-      <div class="mt-2">
-         <TweetItemActions :tweet="tweet" :compact="compact" />
+      <div class="mt-2" v-if="!hideActions">
+         <TweetItemActions @on-comment-click="handleCommentClick" :tweet="tweet" :compact="compact" />
 
       </div>
 
@@ -29,7 +29,8 @@
 </template>
 <script setup>
 const { twitterBorderColor } = useTailwindConfig();
-const { tweet , compact} = defineProps({
+const emitter = useEmitter()
+const { tweet , compact , hideActions} = defineProps({
   tweet: {
     type: Object,
     required: true,
@@ -37,8 +38,20 @@ const { tweet , compact} = defineProps({
   compact : {
     type: Boolean,
     default : false
+  },
+  hideActions : {
+    type: Boolean,
+    default: false
   }
 });
 const TweetBodyWrapper = computed(() => compact ?  'ml-16' : 'ml-2 mt-4'  )
 const textSize = computed(()=> compact ? 'text-base' : 'text-2xl' )
+
+function handleCommentClick() {
+  
+  emitter.$emit('replyTweet' , tweet )
+}
+
+
+
 </script>

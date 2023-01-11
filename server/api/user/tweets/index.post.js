@@ -31,10 +31,13 @@ export default defineEventHandler(async (event) => {
 
   // Check if Reply to is prowided
    const replyTo  = fields.replyTo
-   if (replyTo && replyTo !== 'null') {
    
+   if (replyTo && replyTo !== 'null'  && replyTo !== "undefined") {
+      
        tweetData.replyToId = replyTo
-   }
+   }  
+
+   
 
   const newTweet = await createTweet(tweetData);
 
