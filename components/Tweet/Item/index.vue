@@ -4,8 +4,8 @@
      <TweetItemHeader :tweet="tweet" />
 
     <!-- Main content -->
-    <div class="ml-16">
-      <p class="flex-shrink font-medium text-gray-800 w-auto dark:text-white">
+    <div :class="TweetBodyWrapper">
+      <p class="flex-shrink font-medium text-gray-800 w-auto dark:text-white" :class="textSize">
         {{ tweet.text }}
       </p>
       <div
@@ -19,7 +19,7 @@
       <!-- Footer -->
 
       <div class="mt-2">
-         <TweetItemActions :tweet="tweet" />
+         <TweetItemActions :tweet="tweet" :compact="compact" />
 
       </div>
 
@@ -29,11 +29,16 @@
 </template>
 <script setup>
 const { twitterBorderColor } = useTailwindConfig();
-const { tweet } = defineProps({
+const { tweet , compact} = defineProps({
   tweet: {
     type: Object,
     required: true,
   },
+  compact : {
+    type: Boolean,
+    default : false
+  }
 });
-
+const TweetBodyWrapper = computed(() => compact ?  'ml-16' : 'ml-2 mt-4'  )
+const textSize = computed(()=> compact ? 'text-base' : 'text-2xl' )
 </script>

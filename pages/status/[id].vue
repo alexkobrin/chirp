@@ -35,6 +35,10 @@ async function getTweet() {
     loading.value = false;
   }
 }
+// Refresh Page is post new tweet
+watch(()=> useRoute().fullPath , () => getTweet() )
+
+
 onBeforeMount(() => {
      getTweet(); 
   

@@ -2,13 +2,13 @@
   <div> 
 
      <TweetItem :tweet="tweet" />
-     <TweetForm :user="user" placeholrder="Tweet your reply" />
+     <TweetForm @on-success="handleFormSuccess" :user="user" :replyTo="tweet" placeholder="Tweet your reply" />
      <TweetListFeed :tweets="replies"/>
 
   </div>
 </template>
 <script setup>
-import { propsToAttrMap } from '@vue/shared';
+//import { propsToAttrMap } from '@vue/shared';
 
 const {tweet , user} = defineProps({
   tweet : {
@@ -22,4 +22,10 @@ const {tweet , user} = defineProps({
    
 })
 const replies = computed(()=> tweet?.replies || [])
+function handleFormSuccess(tweet) {
+  navigateTo({
+    path: `/status/${tweet.id}`
+  })
+
+}
 </script>

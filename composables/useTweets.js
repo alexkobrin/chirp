@@ -5,6 +5,7 @@ export default () => {
     const form = new FormData();
 
     form.append("text", formData.text);
+    form.append('replyTo', formData.replyTo)
 
     // Iterating media files
     formData.mediaFiles.forEach((media, index) => {
