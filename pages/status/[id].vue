@@ -3,7 +3,7 @@
     <MainSection title="Tweet" :loading="loading">
 
  
-     <h1>{{getTweetIdFromRoute()}}</h1>
+    <TweetDetails :user="user" :tweet="tweet" />
     
     
     </MainSection>
@@ -16,6 +16,9 @@ useHead({
  
 const { getTweetById } = useTweets();
 const loading = ref(false);
+const tweet = ref(null)
+const {useAuthUser} = useAuth()
+const user = useAuthUser()
 
 function getTweetIdFromRoute() {
  
@@ -23,19 +26,17 @@ function getTweetIdFromRoute() {
 }
 async function getTweet() {
   loading.value = true;
-  // try {
+  try {
     const response = await getTweetById(getTweetIdFromRoute());
- 
-  // } catch (err) {
-  //   console.log(err, "Tweet id Error");
-  // } finally {
+    tweet.value = response.tweet
+  } catch (err) {
+    console.log(err, "Tweet id Error");
+  } finally {
     loading.value = false;
-  // }
+  }
 }
-onMounted(() => {
+onBeforeMount(() => {
      getTweet(); 
   
- 
-   
 });
 </script>

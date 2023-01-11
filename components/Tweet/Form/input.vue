@@ -12,7 +12,7 @@
         <textarea
           v-model="text"
           class="w-full h-12 text-lg text-gray-900 placeholder:text-gray-400 bg-transparent border-0 dark:text-white focus:ring-0"
-          placeholder="What's happening ?"
+          :placeholder="props.placeholder"
         >
         </textarea>
       </div>
@@ -72,6 +72,10 @@ const props = defineProps({
     type: Object,
     require: true,
   },
+  placeholder: {
+    type: String,
+    
+  }
 });
 const text = ref("");
 const imageInput = ref();
