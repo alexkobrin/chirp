@@ -44,9 +44,12 @@ export default () => {
       body: form,
     });
   };
-  const getHomeTweets = async () => {
+  const getTweets = async (params = {}) => {
     try {
-      const response = await useFetchApi("api/tweets");
+      const response = await useFetchApi("api/tweets" , {
+        method: "GET",
+        params
+      });
       return response;
     } catch (err) {
       console.log(err, "homeTweets Error");
@@ -70,7 +73,7 @@ export default () => {
 
   return {
     postTweet,
-    getHomeTweets,
+    getTweets,
     getTweetById,
     closePostTweetModal,
     usePostTweetModal,

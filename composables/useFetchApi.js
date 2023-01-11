@@ -1,14 +1,13 @@
-export default((url , options = {}) => {
+export default (url, options = {}) => {
+  const { useAuthToken } = useAuth();
 
-  const {useAuthToken} = useAuth()
-    
-  return  $fetch(url , {
-    method : options.method || "GET",
-    body: options.body,
-    headers: {
-      ...options.headers,
-      Authorization: `Bearer ${useAuthToken().value}`
-
+  return $fetch(
+    url,{
+      ...options,
+      headers: {
+        ...options.headers,
+        Authorization: `Bearer ${useAuthToken().value}`,
+      },
     }
-  })
-})
+  );
+};

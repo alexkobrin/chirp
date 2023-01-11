@@ -13,7 +13,7 @@ useHead({
   title: "Home",
 });
 const homeTweets = ref([]);
-const {getHomeTweets} = useTweets()
+const {getTweets} = useTweets()
 
 const { twitterBorderColor } = useTailwindConfig();
 const loading = ref(false);
@@ -23,7 +23,7 @@ const user = useAuthUser();
 onBeforeMount(async()=>{
   
   loading.value = true
-  const {tweets} = await getHomeTweets()
+  const {tweets} = await getTweets()
 
   homeTweets.value = tweets
 

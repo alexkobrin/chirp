@@ -68,6 +68,9 @@ const  emitter = useEmitter()
 emitter.$on('replyTweet' , (tweet) => {
   openPostTweetModal(tweet)
 })
+emitter.$on('toggleDarkMode' , () => {
+  darkMode.value = !darkMode.value
+})
 
  
 </script>
