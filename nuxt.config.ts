@@ -7,6 +7,9 @@ export default defineNuxtConfig({
   },
 
   modules: ["@nuxtjs/tailwindcss"],
+  build : {
+    transpile : ['@heroicons/vue']
+  },
 
   // Access to variable in env
   runtimeConfig: {
