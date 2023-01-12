@@ -11,7 +11,7 @@
       </nuxt-link>
     </div>
 
-    <div class="mt-2 space-y-6">
+    <div class="mt-2 space-y-3">
       <SidebarLeftTab>
         <template v-slot:icon>
           <HomeIcon />
@@ -70,9 +70,9 @@
       <!-- button -->
       <div class="block xl:hidden">
         <UIButton @on-click="emits('onTweet')">
-         <div class="w-6 h-6 font-bold">
-          <PencilIcon />
-         </div>
+          <div class="w-6 h-6 font-bold">
+            <PencilIcon />
+          </div>
         </UIButton>
       </div>
       <div class="hidden xl:block">
@@ -81,6 +81,33 @@
         </UIButton>
       </div>
     </div>
+
+    <div
+      class="flex items-center justify-center px-2 py-2 mx-auto mt-auto mb-5 rounded-full cursor-pointer w-14 xl:w-full hover:bg-gray-100 dark:hover:bg-dim-800"
+      :class="defaultTransition"
+      @click="emits('onLogout')"
+
+    >
+      <div class="flex flex-row">
+        <img :src="props.user.profileImage" class="w-10 h-10 rounded-full" />
+        <div class="flex-col hidden ml-2 xl:block">
+          <h1 class="text-sm font-bold text-gray-800 dark:text-white">
+            {{ props.user.name }}
+          </h1>
+
+          <p class="text-sm text-gray-400">@{{ props.user.name }}</p>
+        </div>
+      </div>
+      <!-- Icon -->
+      <div class="hidden ml-auto xl:block" >
+        <div class="w-6 h-6">
+<ChevronDownIcon/>
+        </div>
+
+      </div>
+
+    </div>
+
   </div>
 </template>
 
@@ -94,11 +121,18 @@ import {
   DocumentTextIcon,
   UserIcon,
   EllipsisHorizontalCircleIcon,
-  PencilIcon
+  PencilIcon,
+  ChevronDownIcon,
 } from "@heroicons/vue/24/outline";
 
 const { defaultTransition } = useTailwindConfig();
-const emits = defineEmits(['onTweet'])
+const emits = defineEmits(["onTweet" , "onLogout"]);
+const props = defineProps({
+  user: {
+    type: Object,
+    require: true,
+  },
+});
 </script>
 
 <style></style>

@@ -11,12 +11,16 @@
           <!-- Left side bar -->
           <div class="hidden xs:col-span-1 md:block xl:col-span-2">
             <div class="sticky top-0">
-              <SidebarLeft  @on-tweet="handleOpenTweetModal"/>
+              <SidebarLeft
+                @on-logout="handleUserLogout"
+                :user="user"
+                @on-tweet="handleOpenTweetModal"
+              />
             </div>
           </div>
           <!-- Main content -->
           <main class="col-span-12 md:col-span-8 xl:col-span-6">
-            <router-view  />
+            <router-view />
           </main>
 
           <!-- Right sidebar -->
@@ -29,48 +33,59 @@
       </div>
       <AuthPage v-else />
 
-      <UIModal  :isOpen="postTweetModal"  @on-close="handleModalClose">
-         
-         <TweetForm :replyTo="replyTweet" showReply @on-success="handleFormSuccess"  :user="user"/>
-         </UIModal>  
+      <UIModal :isOpen="postTweetModal" @on-close="handleModalClose">
+        <TweetForm
+          :replyTo="replyTweet"
+          showReply
+          @on-success="handleFormSuccess"
+          :user="user"
+        />
+      </UIModal>
     </div>
   </div>
 </template>
 <script setup>
 const darkMode = ref(false);
-const { useAuthUser, initAuth, useAuthLoading } = useAuth();
-const {closePostTweetModal , openPostTweetModal , usePostTweetModal , useReplyTweet}  = useTweets()
+const { useAuthUser, initAuth, useAuthLoading, logout } = useAuth();
+const {
+  closePostTweetModal,
+  openPostTweetModal,
+  usePostTweetModal,
+  useReplyTweet,
+} = useTweets();
 const user = useAuthUser();
-const postTweetModal = usePostTweetModal()
+const postTweetModal = usePostTweetModal();
 const isAuthLoading = useAuthLoading();
-const replyTweet = useReplyTweet()
+const replyTweet = useReplyTweet();
 
 onBeforeMount(() => {
   initAuth();
 });
 
 function handleFormSuccess(tweet) {
-  closePostTweetModal()
+  closePostTweetModal();
 
   navigateTo({
-    path: `/status/${tweet.id}`
-  })
+    path: `/status/${tweet.id}`,
+  });
 }
 
-function handleModalClose () {
-  closePostTweetModal()
+function handleModalClose() {
+  closePostTweetModal();
 }
 function handleOpenTweetModal() {
-  openPostTweetModal(null)
+  openPostTweetModal(null);
 }
-const  emitter = useEmitter()
 
-emitter.$on('replyTweet' , (tweet) => {
-  openPostTweetModal(tweet)
-})
-emitter.$on('toggleDarkMode' , () => {
-  darkMode.value = !darkMode.value
-})
+function handleUserLogout() {
+  logout();
+}
+const emitter = useEmitter();
 
- 
+emitter.$on("replyTweet", (tweet) => {
+  openPostTweetModal(tweet);
+});
+emitter.$on("toggleDarkMode", () => {
+  darkMode.value = !darkMode.value;
+});
 </script>
